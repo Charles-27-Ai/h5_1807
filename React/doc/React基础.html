@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body {
   max-width: 980px;
   border: 1px solid #ddd;
   outline: 1300px solid #fff;
@@ -1057,7 +1057,7 @@ body .markdown-body
 .codehilite .gc{color:#999;background-color:#EAF2F5}
 </style><title>React基础</title></head><body><article class="markdown-body"><h1 id="react">React<a class="headerlink" href="#react" title="Permanent link"></a></h1>
 <h2 id="react_1">了解React<a class="headerlink" href="#react_1" title="Permanent link"></a></h2>
-<p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在2013年5月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。</p>
+<p>React是一个视图层的框架，起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在2013年5月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。</p>
 <p>React官网地址：<a href="http://facebook.github.io/react/">http://facebook.github.io/react/</a></p>
 <h3 id="react_2">React 特点<a class="headerlink" href="#react_2" title="Permanent link"></a></h3>
 <ul>
@@ -1073,12 +1073,12 @@ body .markdown-body
 <p>通过 React 构建组件，使得代码更加容易得到复用，能够<strong>高效率</strong>的应用在大项目的开发中。</p>
 </blockquote>
 </li>
-<li>JSX扩展<blockquote>
-<p>JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但我们建议使用它。</p>
+<li>单向响应的数据流<blockquote>
+<p>React 中的数据是单向自顶向下传递的，React 之所以能胜任大型复杂前端项目的开发，是因为其 单向数据流 这一重要特性</p>
 </blockquote>
 </li>
-<li>单向响应的数据流<blockquote>
-<p>React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。</p>
+<li>JSX扩展<blockquote>
+<p>JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但我们建议使用它。</p>
 </blockquote>
 </li>
 <li>灵活<blockquote>
@@ -1086,18 +1086,6 @@ body .markdown-body
 </blockquote>
 </li>
 </ul>
-<h3 id="domvirtual-dom">虚拟DOM（Virtual DOM）<a class="headerlink" href="#domvirtual-dom" title="Permanent link"></a></h3>
-<p>在Web开发中，我们总需要将变化的数据实时反应到UI上，这时就需要对DOM进行操作。而复杂或频繁的DOM操作通常是性能瓶颈产生的原因（如何进行高性能的复杂DOM操作通常是衡量一个前端开发人员技能的重要指标）。React为此引入了虚拟DOM（Virtual DOM）的机制</p>
-<p><img src="///F://mydoc/kphone/h5/Section3/Outline3/week5_React/doc/img/dom.png" style="width:320px;">
-<img src="///F://mydoc/kphone/h5/Section3/Outline3/week5_React/doc/img/virtualDOM.png" style="width:500px;"></p>
-<div class="codehilite"><pre>    <span class="c1">//测试以下节点操作代码花费时间，并尝试优化它</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.btn&#39;</span><span class="p">);</span>
-        <span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">btn</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
-        <span class="nx">btn</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="o">++</span><span class="nx">num</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-
 <h2 id="_1">安装与引入<a class="headerlink" href="#_1" title="Permanent link"></a></h2>
 <h3 id="script">script标签引入<a class="headerlink" href="#script" title="Permanent link"></a></h3>
 <ul>
@@ -1133,7 +1121,24 @@ body .markdown-body
 </pre></div></p>
 </li>
 </ul>
-<h2 id="jsx">JSX语法<a class="headerlink" href="#jsx" title="Permanent link"></a></h2>
+<h2 id="_2">使用<a class="headerlink" href="#_2" title="Permanent link"></a></h2>
+<h3 id="domvirtual-dom">虚拟DOM（Virtual DOM）<a class="headerlink" href="#domvirtual-dom" title="Permanent link"></a></h3>
+<p>在Web开发中，我们总需要将变化的数据实时反应到UI上，这时就需要对DOM进行操作。而复杂或频繁的DOM操作通常是性能瓶颈产生的原因（如何进行高性能的复杂DOM操作通常是衡量一个前端开发人员技能的重要指标）。React为此引入了虚拟DOM（Virtual DOM）的机制，根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分反映在真实 DOM上，这就是DOM diff算法（可以极大提高网页的性能）</p>
+<p><img src="///F://mydoc/kphone/h5/Section3/Outline3/week5_React/doc/img/dom.png" style="width:320px;">
+<img src="///F://mydoc/kphone/h5/Section3/Outline3/week5_React/doc/img/virtualDOM.png" style="width:500px;"></p>
+<blockquote>
+<p>什么是虚拟DOM：结构类似于DOM树的 JavaScript 对象
+* 创建虚拟DOM节点：React.createElement(component, props, &hellip;children)</p>
+</blockquote>
+<div class="codehilite"><pre>    <span class="c1">//测试以下节点操作代码花费时间，并尝试优化它</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.btn&#39;</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">btn</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
+        <span class="nx">btn</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="o">++</span><span class="nx">num</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+
+<h3 id="jsx">JSX语法<a class="headerlink" href="#jsx" title="Permanent link"></a></h3>
 <p>一种特殊的js语法，是ECMAScript的扩展，可以让我们在js代码中直接使用html标签，再通过编译器（Babel）转成标准的 JavaScript 后由浏览器执行。</p>
 <p>Babel解析规则：</p>
 <blockquote>
@@ -1145,14 +1150,19 @@ body .markdown-body
 </ul>
 <blockquote>
 <p>注意：
-<em> 因为Javascript代码与JSX代码并不兼容，凡是使用JSX的script标签都需要加上 type=&rdquo;text/babel&rdquo;
-</em> 在jsx代码中，同为js关键字的html属性不能直接使用（如：class-&gt;className,for-&gt;htmlFor）
-<em> style 属性的值接收一个对象，css 的属性必须为驼峰写法：style={{&ldquo;backgroundColor&rdquo;:&rdquo;#f60&rdquo;}}
-</em> 必须结束标签（如：<code>&lt;input type="text"/&gt;</code>）
-<em> 花括号<code>{}</code>内为js表达式，不允许出现var,let,const等关键字
-</em> 使用js语法注释（如{<code>/*注释内容*/</code>}，<code>//注释内容</code>）</p>
+* 因为Javascript代码与JSX代码并不兼容，凡是使用JSX的script标签都需要加上 type=&rdquo;text/babel&rdquo;
+* 在jsx代码中，同为js关键字的html属性不能直接使用
+    * class -&gt; className,
+    * for -&gt; htmlFor
+    * tabindex -&gt; tabIndex
+* style 属性的值接收一个对象，css 的属性必须为驼峰写法
+style={{&ldquo;backgroundColor&rdquo;:&rdquo;#f60&rdquo;}}
+* 必须结束标签（如：<code>&lt;input type="text"/&gt;</code>）
+* 花括号<code>{}</code>内为js表达式，不允许出现var,let,const等关键字
+* 使用js语法注释（如{<code>/*注释内容*/</code>}，<code>//注释内容</code>）</p>
+<p>PS: jsx不是必须的，它只是React.createElement()的语法糖</p>
 </blockquote>
-<h3 id="_2">元素渲染<a class="headerlink" href="#_2" title="Permanent link"></a></h3>
+<h3 id="ui">UI渲染<a class="headerlink" href="#ui" title="Permanent link"></a></h3>
 <ul>
 <li>
 <p>ReactDOM.render(template,targetDOM)</p>
@@ -1171,9 +1181,9 @@ body .markdown-body
 </ul>
 <h2 id="_3">面向组件编程<a class="headerlink" href="#_3" title="Permanent link"></a></h2>
 <blockquote>
-<p>所谓组件，即封装起来的具有独立功能的UI部件，通俗来讲，就是“创建一个新的 HTML 标签”
-<em> 组件名必须大写开头
-</em> 只能包含一个顶层标签</p>
+<p>所谓组件，即封装起来的具有独立功能的UI部件，用来组合成更高级东西的物件，通俗来讲，就是“创建一个新的 HTML 标签”
+* 组件名必须大写开头
+* 只能包含一个顶层标签</p>
 </blockquote>
 <p><img alt="组件" src="///F://mydoc/kphone/h5/Section3/Outline3/week5_React/doc/img/component.jpg" title="Optional title" /></p>
 <blockquote>
@@ -1181,11 +1191,23 @@ body .markdown-body
 </blockquote>
 <h3 id="_4">组件定义<a class="headerlink" href="#_4" title="Permanent link"></a></h3>
 <ul>
-<li>函数式组件<blockquote>
-<p>如果把组件理解为一个函数，那么组件属性就是这个函数的参数，函数的返回值就是呈现到页面上的视图</p>
+<li>
+<p>函数组件（无状态组件、受控组件、UI组件）</p>
+<blockquote>
+<p>纯展示组件，这种组件只负责根据外部传入的props来展示，书写更简洁，执行效率更高</p>
 </blockquote>
+<ul>
+<li>特点<ul>
+<li>无state状态，只能访问传入的props属性</li>
+<li>组件不会被实例化，整体渲染性能得到提升</li>
+<li>组件不能访问this对象</li>
+<li>组件无法访问生命周期的方法</li>
+</ul>
 </li>
 </ul>
+<blockquote>
+<p>PS：无状态组件被鼓励在大型项目中尽可能以简单的写法来分割原本庞大的组件，未来React也会这种面向无状态组件在譬如无意义的检查和内存分配领域进行一系列优化，所以只要有可能，尽量使用无状态组件。</p>
+</blockquote>
 <div class="codehilite"><pre>    <span class="c1">//定义</span>
     <span class="kd">function</span> <span class="nx">MyComponent</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
         <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">函数组件</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
@@ -1198,45 +1220,31 @@ body .markdown-body
     <span class="p">);</span>
 </pre></div>
 
-<ul>
-<li>类继承组件
+</li>
+<li>
+<p>类组件（有状态组件、非受控组件、容器组件）</p>
+<blockquote>
+<p>类继承组件有更丰富的特性（state状态、生命周期等）</p>
+</blockquote>
+</li>
+</ul>
 <div class="codehilite"><pre>    <span class="kr">class</span> <span class="nx">About</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
         <span class="nx">render</span><span class="p">(){</span>
             <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="o">&gt;</span><span class="nx">类组件</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">myname</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-</pre></div></li>
-</ul>
-<h3 id="state">组件状态state<a class="headerlink" href="#state" title="Permanent link"></a></h3>
-<ul>
-<li>设置状态: React会在状态改变后自动执行组件中的render方法渲染视图<blockquote>
-<p>格式：setState(nextState[,callback])</p>
-</blockquote>
-<ul>
-<li>nextState: 将要设置的新状态，该状态会和当前的state合并</li>
-<li>callback: 可选参数，回调函数。该函数会在setState设置成功，且组件重新渲染后调用。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>PS：不能在组件内部通过this.state修改状态，因为该状态会在调用setState()后被替换</p>
-</blockquote>
-<ul>
-<li>
-<p>强制更新组件</p>
-<blockquote>
-<p>格式：forceUpdate(callback)</p>
-</blockquote>
-<p>forceUpdate()方法会使组件调用自身的render()方法重新渲染组件，组件的子组件也会调用自己的render()，一般来说，应该尽量避免使用forceUpdate()，而仅从this.props和this.state中读取状态并由React触发render()调用</p>
-</li>
-</ul>
+</pre></div>
+
 <h3 id="props">组件属性props<a class="headerlink" href="#props" title="Permanent link"></a></h3>
+<blockquote>
+<p>是一个对象，包含使用组件时的所有属性，属性必须为只读的，这一点非常重要，请严格遵守</p>
+</blockquote>
 <ul>
 <li>
 <p>获取方式</p>
 <ul>
 <li>函数声明式组件，通过参数props访问</li>
-<li>class组件，通过this.props访问</li>
+<li>类继承组件，通过this.props访问</li>
 </ul>
 </li>
 <li>
@@ -1247,14 +1255,14 @@ body .markdown-body
 <div class="codehilite"><pre>    <span class="nx">MyComponent</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
       <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;laoxie&#39;</span>
     <span class="p">}</span>
+
+    <span class="c1">//ES6写法</span>
+    <span class="kr">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;laoxie&#39;</span>
+    <span class="p">}</span>
 </pre></div>
 
 </li>
-</ul>
-<blockquote>
-<p>PS：属性必须为只读的，这一点非常重要，请严格遵守</p>
-</blockquote>
-<ul>
 <li>
 <p>属性的类型及校验（用于限制传入属性的数据类型）</p>
 <blockquote>
@@ -1283,60 +1291,198 @@ body .markdown-body
 </ul>
 </li>
 <li>
-<p>children: 获取双标签组件的内容，返回值如下</p>
+<p><code>props.children</code>: 获取双标签组件的内容，返回值如下</p>
 <ul>
 <li>无内容：Undefined</li>
 <li>文字内容：String</li>
-<li>单个内容：Object</li>
+<li>单个标签：Object</li>
 <li>多个标签：Array</li>
-</ul>
-</li>
 </ul>
 <blockquote>
 <p>PS：可利用 React.Children对象下的方法进行操作</p>
 </blockquote>
-<h2 id="_5">事件处理<a class="headerlink" href="#_5" title="Permanent link"></a></h2>
-<ul>
-<li>采用驼峰式写法</li>
+</li>
 </ul>
-<h3 id="_6">事件处理函数传参<a class="headerlink" href="#_6" title="Permanent link"></a></h3>
+<h3 id="state">组件状态state<a class="headerlink" href="#state" title="Permanent link"></a></h3>
+<blockquote>
+<p>React会在状态改变后自动执行组件中的render方法渲染视图</p>
+</blockquote>
+<ul>
+<li>
+<p>初始状态
+<div class="codehilite"><pre>    class MyComponent extends React.Component {
+        constructor() {
+            super(); // 这行代码不能少哦
+            this.state = {
+                isLiked: false
+            }
+        }
+    }
+</pre></div></p>
+</li>
+<li>
+<p>修改状态setState: </p>
+<ul>
+<li>
+<p>格式：<code>setState(nextState[,callback])</code></p>
+<ul>
+<li>nextState: 将要设置的新状态，该状态会和当前的state合并</li>
+<li>callback: 可选参数，回调函数。该函数会在setState设置成功，且组件重新渲染后调用。</li>
+</ul>
+</li>
+<li>
+<p>依赖上次setState的结果</p>
+<blockquote>
+<p>格式：<code>setState(fn [,callback])</code></p>
+</blockquote>
+<ul>
+<li>fn(prevState)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>PS：调用setState()并不会马上修改 state。而是进入到一个更新队列里面，所以不能在组件内部通过this.state直接修改状态，因为修改后会被setState()替换（如下两次输出都为false）</p>
+</blockquote>
+<div class="codehilite"><pre>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">isLiked</span><span class="p">);</span><span class="c1">//false</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+    <span class="nx">isLiked</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">checked</span><span class="p">);</span><span class="c1">//false</span>
+</pre></div>
+
+</li>
+<li>
+<p>强制更新组件</p>
+<blockquote>
+<p>格式：forceUpdate(callback)</p>
+</blockquote>
+<p>forceUpdate()方法会使组件调用自身的render()方法重新渲染组件，组件的子组件也会调用自己的render()，一般来说，应该尽量避免使用forceUpdate()，而仅从this.props和this.state中读取状态并由React触发render()调用</p>
+</li>
+</ul>
+<h3 id="state-vs-props">state VS props<a class="headerlink" href="#state-vs-props" title="Permanent link"></a></h3>
+<blockquote>
+<p>一个组件的 state 中的数据可以通过 props 传给子组件，一个组件可以使用外部传入的 props 来初始化自己的 state。但是它们的职责其实非常明晰分明：<strong>state 是让组件控制自己的状态，props 是让外部对组件自己进行配置</strong></p>
+</blockquote>
+<h3 id="_5">组件通讯<a class="headerlink" href="#_5" title="Permanent link"></a></h3>
+<h4 id="props_1">props逐层传递<a class="headerlink" href="#props_1" title="Permanent link"></a></h4>
+<blockquote>
+<p>通过逐层传递到相应的html标签上</p>
+</blockquote>
+<ul>
+<li>缺点：<ul>
+<li>操作繁琐</li>
+<li>难以维护</li>
+</ul>
+</li>
+</ul>
+<h4 id="context">context组件共享<a class="headerlink" href="#context" title="Permanent link"></a></h4>
+<blockquote>
+<p>某个组件只要往自己的 context 里面放了某些状态，这个组件之下的所有子组件都直接访问这个状态(context好比组件的全局变量，能让所有子组件直接访问)</p>
+</blockquote>
+<ul>
+<li>实现步骤<ol>
+<li>定义数据：父组件设置getChildContext方法并返回context对象</li>
+<li>验证数据类型：父组件设置childContextTypes静态属性声明和验证context对象的属性</li>
+<li>验证数据类型：子组件设置contextTypes静态属性声明和验证context</li>
+<li>使用数据：子组件通过this.context.xxx获取需要的共享数据</li>
+</ol>
+</li>
+</ul>
+<h2 id="_6">事件处理<a class="headerlink" href="#_6" title="Permanent link"></a></h2>
+<ul>
+<li>采用驼峰式写法（如：onClick,onKeyDown）</li>
+</ul>
+<h3 id="event">event对象与事件处理函数传参<a class="headerlink" href="#event" title="Permanent link"></a></h3>
 <ul>
 <li>默认绑定方式<ul>
 <li>事件处理函数的第一个参数为event对象（与原生js一致）</li>
+<li>无法传递其他参数
+<div class="codehilite"><pre>    <span class="c1">//定义</span>
+    <span class="nx">clickHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//使用</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">按钮</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</pre></div></li>
 </ul>
 </li>
-<li>箭头函数<ul>
+<li>使用箭头函数调用<ul>
 <li>event对象需要手动传递</li>
+<li>可以传递其他参数
+<div class="codehilite"><pre>    <span class="c1">//定义</span>
+    <span class="nx">clickHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">num</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">num</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//使用</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span><span class="o">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="mi">10</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">按钮</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</pre></div></li>
 </ul>
 </li>
 <li>bind方式<ul>
-<li>event事件对象会在所有参数后隐式传递</li>
+<li>event事件对象会在所有参数后隐式传递
+<div class="codehilite"><pre>    <span class="c1">//定义</span>
+    <span class="nx">clickHandler</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span><span class="nx">num2</span><span class="p">,</span><span class="nx">e</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span><span class="nx">num2</span><span class="p">,</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//使用</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">按钮</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</pre></div></li>
 </ul>
 </li>
 </ul>
-<h3 id="this">改变事件处理函数this指向<a class="headerlink" href="#this" title="Permanent link"></a></h3>
+<h3 id="this">事件处理函数中的this指向<a class="headerlink" href="#this" title="Permanent link"></a></h3>
+<div class="codehilite"><pre>    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">按钮</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</pre></div>
+
+<blockquote>
+<p>以上clickHandler被调用时，内部的this不指向组件实例，也不指向button元素，而是得到undefined，如果需要用到this需要使用以下方式改变this指向</p>
+</blockquote>
 <ul>
-<li>定义时使用箭头函数<ul>
-<li>this指向组件实例</li>
-</ul>
-</li>
 <li>bind方法<ul>
-<li>this指向绑定的对象</li>
+<li>执行时bind</li>
+<li>初始化时bind</li>
 </ul>
 </li>
+<li>使用箭头函数<ul>
+<li>定义时使用箭头函数</li>
+<li>执行时使用箭头函数</li>
+</ul>
+</li>
+</ul>
+<h2 id="dom">获取真实的DOM节点<a class="headerlink" href="#dom" title="Permanent link"></a></h2>
+<ul>
+<li>通过refs获取节点，并进行节点操作
+<div class="codehilite"><pre>    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">ref</span><span class="o">=</span><span class="s2">&quot;btnSave&quot;</span><span class="o">&gt;</span><span class="nx">保存</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+
+    <span class="c1">//获取</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">btnSave</span>
+
+    <span class="c1">//设置为实例属性</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">form</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">form</span> <span class="o">=</span> <span class="nx">form</span><span class="p">}}</span> <span class="o">/&gt;</span>
+</pre></div></li>
 </ul>
 <h2 id="key">列表&amp;key<a class="headerlink" href="#key" title="Permanent link"></a></h2>
-<ul>
-<li>使用 JavaScript 的 map() 方法来创建列表</li>
-<li>Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。<blockquote>
-<p>一个元素的 key 最好是这个元素在列表中拥有的一个独一无二的字符串</p>
+<p>使用 JavaScript 的 map() 方法来创建列表</p>
+<h3 id="key_1">key<a class="headerlink" href="#key_1" title="Permanent link"></a></h3>
+<blockquote>
+<p>react利用key来区分组件的
+    * 相同的key表示同一个组件，react不会重新销毁创建组件实例，只可能更新；
+    * key不同，react会销毁已有的组件实例，重新创建组件新的实例
+* 数组生成的同级同类型的组件上要保持唯一
+* key应该是稳定唯一的，尽量不要用数组的索引index作为key（排序或添加时索引值会改变）</p>
 </blockquote>
-</li>
-</ul>
 <hr />
 <p>【案例】</p>
 <ul>
 <li>名片切换</li>
 <li>走动的时钟</li>
 <li>待办事项todolist</li>
+<li>利用组件布局一个页面（Header,Main,Footer）<ul>
+<li>Header组件中有Logo和Nav组件</li>
+<li>Main组件分左右布局（Side侧栏、Content内容）</li>
+</ul>
+</li>
 </ul></article></body></html>

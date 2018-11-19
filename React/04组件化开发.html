@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04组件化开发</title>
+	<script src="lib/react.development.js"></script>
+	<script src="lib/react-dom.development.js"></script>
+	<script src="lib/babel.min.js"></script>
+	<style>
+		.box{border:5px solid #58bc58;padding:10px;width:100px;height:100px;}
+	</style>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/babel">
+		/*
+			组件化开发
+				* 定义
+				* 使用
+
+
+			重要：学会分析UI界面，分析哪部分可以定义成组件
+
+			利用组件化思想编写页面：组装
+		 */
+		
+
+		//定义组件
+
+		//1.函数组件
+		function Box(){
+			return <div className="box">
+				函数组件
+			</div>
+		}
+
+		//2.类组件
+		class Content extends React.Component{
+			
+			//类组件必须包含一个render方法
+			// render方法必须有返回值
+			render(){
+				return <ul>
+					<li>laoxie</li>
+					<li>jingjing</li>
+					<li>lemon</li>
+					<li>tiantian</li>
+				</ul>
+			}
+		}
+		
+		ReactDOM.render(
+			<div>
+				<Box/>
+				<Content/>
+			</div>
+			,
+			document.querySelector('#app')
+		)
+	</script>
+</body>
+</html>
