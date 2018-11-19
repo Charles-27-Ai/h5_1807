@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01节点操作性能演示</title>
+	
+</head>
+<body>
+	<button class="btn">0</button>
+	<script>
+		/*
+			影响页面性能因素
+				* 节点操作次数
+			节点操作次数
+			测试代码执行时间
+				* console.log()
+		 */
+		
+		console.time('mytime');
+		// for(let i=0;i<10000;i++){
+	 //        let btn = document.querySelector('.btn');
+	 //        let num = btn.innerText;
+	 //        btn.innerText = ++num;
+	 //    }
+
+
+	// 优化代码
+		let btn = document.querySelector('.btn');
+	    let num = btn.innerText;
+
+	 	for(let i=0;i<10000;i++){
+	        ++num;
+	    }
+	    btn.innerText = num;
+	    console.timeEnd('mytime');
+	</script>
+</body>
+</html>
