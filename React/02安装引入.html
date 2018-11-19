@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02安装引入</title>
+	<script src="lib/react.development.js"></script>
+	<script src="lib/react-dom.development.js"></script>
+	<script src="lib/babel.min.js"></script>
+	<style>
+		.girl{width:100px;}
+	</style>
+</head>
+<body>
+	<h1>02安装引入</h1>
+	<div id="app"></div>
+	<script type="text/babel">
+		/*
+			* ReactDOM.render()
+			* React.createElement(标签名,属性,...子元素);//Virtual DOM
+
+			JSX编译
+				* babel： jsx -> javascript
+				* 规定
+					* script标签type属性必须为：type="text/babel"
+					* 必须结束标签
+					* 不能直接使用js关键字
+						* class -> className
+						* for -> htmlFor
+						* tabindex -> tabIndex
+		 */
+		let myname = 'laoxie';
+		let mystyle = {color:'#f00'}
+
+		ReactDOM.render(
+			//渲染什么
+			// <h1 title="my name is laoxie">laoxie</h1>
+			// React.createElement('h1',{title:'my name is laoxie'},React.createElement('span',{},'laoxie'),React.createElement('span',{},'jingjing'))
+
+			// JSX语法
+			<h1 title="my name is laoxie">
+				<span style={mystyle}>{myname}</span>
+				<span>jingjing{10+10}</span>
+				<input type="text"/>
+				<img src="img/g1.jpg" className="girl" />
+				{//单行注释}
+				{/*多行注释*/}
+			</h1>
+			,
+			// 渲染到哪：node
+			document.getElementById('app')
+		)
+	</script>
+</body>
+</html>
