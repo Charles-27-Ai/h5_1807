@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>走动的时间</title>
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        function Time(props){
+            return <div className="time">
+                当前时间：{props.data}
+            </div>
+        }
+
+        class ShowTime extends React.Component{
+            // 初始化：进入组件立即执行的代码
+            constructor(){
+                super();
+                console.log(666);
+
+                // 组件状态
+                this.state = {
+                    time:this.formatDate(new Date()),//2018-11-20 10:19:00
+                }
+
+                // 设置定时器
+                setInterval(() => {
+                    this.setState({
+                        time:this.formatDate(new Date())
+                    })
+                }, 1000);
+            }
+
+            
+            // 格式化时间
+            // 返回：2018-11-20 10:19:00
+            formatDate(d){
+                let year = d.getFullYear();
+                let month = d.getMonth()+1;
+                let date = d.getDate();
+
+                let hour = d.getHours();
+                let min = d.getMinutes();
+                let sec = d.getSeconds();
+
+                hour = String(hour).padStart(2,'0');
+                min = String(min).padStart(2,'0');
+                sec = String(sec).padStart(2,'0');
+
+                return `${year}-${month}-${date} ${hour}:${min}:${sec}`
+            }
+
+
+            render(){
+               return  <Time data={this.state.time}/>
+            }
+        }
+
+        ReactDOM.render(
+            <ShowTime/>
+            ,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
