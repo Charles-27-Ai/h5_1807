@@ -7,7 +7,7 @@ class TodoContent extends Component{
     render(){
         let {data,handlerRemove,handlerComplete} = this.props
         return (
-            <table className="table">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                     <th scope="col">#</th>

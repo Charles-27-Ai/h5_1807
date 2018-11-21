@@ -12,6 +12,10 @@ class TodoForm extends Component{
         this.refs.text.focus();
     }
 
+    componentDidMount(){
+        this.refs.text.focus();
+    }
+
     render(){
        
         return (

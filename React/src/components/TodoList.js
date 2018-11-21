@@ -70,7 +70,8 @@ class TodoList extends Component{
     render(){
         let {datalist} = this.state;
         return (
-            <div className="todolist">
+            <div className="todolist container">
+                <h1>TodoList</h1>
                 <TodoForm handlerAdd={this.handlerAdd}/>
                 <TodoContent data={datalist} handlerRemove={this.handlerRemove} handlerComplete={this.handlerComplete}/>
             </div>
