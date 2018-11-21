@@ -22,13 +22,57 @@ class TodoList extends Component{
                 }
             ]
         }
+
+        //改变this指向
+        this.handlerAdd = this.handlerAdd.bind(this);
+        this.handlerComplete = this.handlerComplete.bind(this);
+        this.handlerRemove = this.handlerRemove.bind(this);
     }
+    // 添加待办事件
+    handlerAdd(txt){console.log(this)
+        // 不能直接修改state中的
+        // this.state.datalist.unshift({
+        //     content:txt,
+        //     done:false
+        // })
+
+        
+
+        this.setState({
+            datalist:[{
+                content:txt,
+                done:false
+            },...this.state.datalist]
+        });
+    }
+
+    // 完成待办事件
+    handlerComplete(idx){
+        let datalist = [...this.state.datalist];
+        datalist[idx].done = true;
+
+        this.setState({
+            datalist
+        })
+    }
+
+    // 删除待办事件
+    handlerRemove(idx){console.log(idx)
+        let datalist = [...this.state.datalist];
+
+        datalist.splice(idx,1);
+
+        this.setState({
+            datalist
+        })
+    }
+
     render(){
         let {datalist} = this.state;
         return (
             <div className="todolist">
-                <TodoForm/>
-                <TodoContent data={datalist}/>
+                <TodoForm handlerAdd={this.handlerAdd}/>
+                <TodoContent data={datalist} handlerRemove={this.handlerRemove} handlerComplete={this.handlerComplete}/>
             </div>
         )
     }

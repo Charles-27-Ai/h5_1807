@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 
 class TodoContent extends Component{
     render(){
-        let {data} = this.props
+        let {data,handlerRemove,handlerComplete} = this.props
         return (
             <table className="table">
                 <thead>
@@ -18,7 +18,12 @@ class TodoContent extends Component{
                 </thead>
                 <tbody>
                     {
-                        data.map((item,idx)=><TodoItem key={idx} data={item} idx={idx}/>)
+                        data.map((item,idx)=><TodoItem key={idx} 
+                        data={item} 
+                        idx={idx} 
+                        handlerComplete={handlerComplete}
+                        handlerRemove={handlerRemove}
+                        />)
                     }
                     
                 </tbody>
