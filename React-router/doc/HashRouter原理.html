@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HashRouter原理</title>
+</head>
+<body>
+	<ul>
+		<li><a href="#/home">首页</a></li>
+		<li><a href="#/list">列表</a></li>
+		<li><a href="#/goods">详情页</a></li>
+	</ul>
+	<div id="app"></div>
+	<script>
+		/*
+			根据url地址的hash值来显示不同的内容
+		 */
+		let app = document.getElementById('app');
+		//获取浏览器下的hash值
+		let hash = window.location.hash;
+		render(hash)
+		window.addEventListener('hashchange',function(){
+			let hash = location.hash;
+
+			render(hash)
+		})
+
+		function render(hash){
+			hash = hash.slice(1);
+			switch(hash){
+				case '/home':
+					app.innerText = '首页';
+					break;
+				case '/list':
+					app.innerText = '列表页';
+					break;
+				case '/goods':
+					app.innerText = '商品详情页';
+					break;
+			}
+		}
+	</script>
+</body>
+</html>
