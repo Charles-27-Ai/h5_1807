@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-import {Route,NavLink,Redirect,Switch} from 'react-router-dom';
+import {Route,NavLink,Redirect,Switch,withRouter} from 'react-router-dom';
 
 import { TabBar } from 'antd-mobile';
 
@@ -25,10 +25,10 @@ library.add(
     faAssistiveListeningSystems
     )
 
-// import {Home} from './Home';
-// import {List} from './List';
-// import {Goods} from './Goods';
-// import {NotFound} from './Page';
+import {Home} from './Home';
+import {List} from './List';
+import {Goods} from './Goods';
+import {NotFound} from './Page';
 
 // import '../css/page.css';
 
@@ -68,22 +68,22 @@ class App extends Component{
             tabs:[
                 {
                     title:'首页',
-                    path:'home',
+                    path:'/home',
                     icon:'home'
                 },
                 {
                     title:'列表',
-                    path:'list',
+                    path:'/list',
                     icon:'list-ul'
                 },
                 {
                     title:'详情',
-                    path:'goods',
+                    path:'/goods',
                     icon:'assistive-listening-systems'
                 },
                 {
                     title:'购物车',
-                    path:'cart',
+                    path:'/cart',
                     icon:'shopping-cart'
                 }
             ],
@@ -91,30 +91,55 @@ class App extends Component{
         }
     }
 
-    handlerClick(idx){
+    handlerClick(idx,path){
         this.setState({
             currentTab:idx
-        })
+        });
+
+        //编程式导航
+        //获取history的方式
+        // * 通过Route渲染App
+        // * 利用withRouter高阶组件实现
+        this.props.history.push(path);
+        console.log(this.props)
     }
     render(){
-        return <TabBar>
-            {
-                this.state.tabs.map((tab,idx)=>{
-                    return <TabBar.Item
-                        title={tab.title}
-                        key={tab.path}
-                        icon={<FontAwesomeIcon icon={tab.icon}/>}
-                        selectedIcon={<FontAwesomeIcon icon={tab.icon}/>}
-                        selected={this.state.currentTab === idx}
-                        onPress={this.handlerClick.bind(this,idx)}
-                        >
-                        {tab.title}
-                        </TabBar.Item>
-                })
-            }
-            
-        </TabBar>
+        return <div className="container">
+            <div className="content">
+                <Switch>
+                    <Route path="/home" component={Home} />
+                    <Route path="/list" component={List} />
+                    <Route path="/goods" component={Goods} />
+                    <Route path="/404" component={NotFound} />
+                    <Redirect from="/" to="/home" exact/>
+                    <Redirect to="/404"/>
+                </Switch>
+            </div>
+            <TabBar
+                tintColor="#f00"
+                noRenderContent={true}
+                >
+                {
+                    this.state.tabs.map((tab,idx)=>{
+                        return <TabBar.Item
+                            title={tab.title}
+                            key={tab.path}
+                            icon={<FontAwesomeIcon icon={tab.icon}/>}
+                            selectedIcon={<FontAwesomeIcon icon={tab.icon}/>}
+                            selected={this.state.currentTab === idx}
+                            onPress={this.handlerClick.bind(this,idx,tab.path)}
+                            >
+                            {tab.title}
+                            </TabBar.Item>
+                    })
+                }
+                
+            </TabBar>
+        </div>
     }
 }
+
+//利用高阶组件传递路由参数
+App = withRouter(App);
 
 export default App;
