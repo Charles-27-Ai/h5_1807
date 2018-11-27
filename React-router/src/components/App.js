@@ -27,6 +27,7 @@ library.add(
 
 import {Home} from './Home';
 import {List} from './List';
+// import List from './List';
 import {Goods} from './Goods';
 import {NotFound} from './Page';
 
@@ -103,13 +104,30 @@ class App extends Component{
         this.props.history.push(path);
         console.log(this.props)
     }
+
+    componentWillMount(){
+        //获取hash值
+        let hash = window.location.hash.slice(1);//#list
+
+        //找出对应索引值
+        let currentTab = 0
+        this.state.tabs.some((item,idx)=>{
+            currentTab = idx;
+            return item.path === hash
+        });
+
+        this.setState({
+            currentTab
+        });
+    }
     render(){
         return <div className="container">
             <div className="content">
                 <Switch>
                     <Route path="/home" component={Home} />
                     <Route path="/list" component={List} />
-                    <Route path="/goods" component={Goods} />
+                    <Route path="/goods" exact component={Goods} />
+                    <Route path="/goods/:id" component={Goods} />
                     <Route path="/404" component={NotFound} />
                     <Redirect from="/" to="/home" exact/>
                     <Redirect to="/404"/>
