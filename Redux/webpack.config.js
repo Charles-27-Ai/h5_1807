@@ -21,8 +21,16 @@ module.exports = {
 	  open:true, // 自动打开浏览器，适合懒
 	  proxy:{
 		'/api':{
-			target:'https://m.weibo.cn',
-			changeOrigin:true
+			target:'http://www.360kxr.com/',
+			changeOrigin:true,
+			pathRewrite:{'^/api':'/'}
+		},
+		"/jxapi": {
+			"target": "https://m.jiuxian.com",
+			"changeOrigin": true,
+			"pathRewrite": {
+				"^/jxapi" : "/"
+			}
 		}
 	},
     },
@@ -40,7 +48,7 @@ module.exports = {
 					{
 						loader:'babel-loader',
 						options:{
-							presets:['env','react']
+							presets:['env','react','stage-0']
 						}
 					}
 				]
