@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
 
 import {Route,NavLink,Redirect,Switch,withRouter} from 'react-router-dom';
 
@@ -15,6 +15,7 @@ import {List} from './components/List';
 import {Goods} from './components/Goods';
 import {Cart} from './components/Cart';
 import {NotFound} from './components/Page';
+
 
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -91,8 +92,11 @@ class App extends Component {
       this.setState({
           currentTab
       });
+
+      console.log('app props:',this.props)
   }
   render() {
+
     return (
       <div className="container">
             <div className="content">
@@ -109,6 +113,7 @@ class App extends Component {
             <TabBar
                 tintColor="#f00"
                 noRenderContent={true}
+                hidden={!this.props.tabbarStatus}
                 >
                 {
                     this.state.tabs.map((tab,idx)=>{
@@ -119,6 +124,7 @@ class App extends Component {
                             selectedIcon={<FontAwesomeIcon icon={tab.icon}/>}
                             selected={this.state.currentTab === idx}
                             onPress={this.handlerClick.bind(this,idx,tab.path)}
+                            badge={tab.path == '/cart' ? this.props.cartQty : null}
                             >
                             {tab.title}
                             </TabBar.Item>
@@ -130,6 +136,18 @@ class App extends Component {
     );
   }
 }
+
+let mapStateToProps = state=>{
+    // 此处必须返回一个对象
+    console.log(state);
+    return {
+        //把state.commonReducer.tabbarStatus映射到props
+        tabbarStatus:state.commonReducer.tabbarStatus,
+        cartQty:state.cartReducer.goodslist.length
+    }
+}
+
+App = connect(mapStateToProps)(App);
 
 App = withRouter(App);
 
