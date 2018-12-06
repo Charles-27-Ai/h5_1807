@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import {Route,NavLink,Redirect,Switch,withRouter} from 'react-router-dom';
+import {Route,Redirect,Switch,withRouter} from 'react-router-dom';
 
 import { TabBar } from 'antd-mobile';
 
@@ -15,6 +15,8 @@ import {List} from './components/List';
 import {Goods} from './components/Goods';
 import {Cart} from './components/Cart';
 import {NotFound} from './components/Page';
+
+import axios from 'axios';
 
 
 // fontawesome
@@ -32,6 +34,9 @@ library.add(
     faShoppingCart,
     faAssistiveListeningSystems
 )
+
+// 设置axios的基础路径
+axios.defaults.baseURL = 'http://localhost:4004'
 
 
 

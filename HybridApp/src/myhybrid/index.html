@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+		.mui-slider img{height:200px;}
+	</style>
+</head>
+<body>
+	<div class="mui-slider">
+	  <div class="mui-slider-group mui-slider-loop">
+		<!--支持循环，需要重复图片节点-->
+		<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/g4.jpg" /></a></div>
+		<div class="mui-slider-item"><a href="#"><img src="img/g1.jpg" /></a></div>
+		<div class="mui-slider-item"><a href="#"><img src="img/g2.jpg" /></a></div>
+		<div class="mui-slider-item"><a href="#"><img src="img/g3.jpg" /></a></div>
+		<div class="mui-slider-item"><a href="#"><img src="img/g4.jpg" /></a></div>
+		<!--支持循环，需要重复图片节点-->
+		<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/g1.jpg" /></a></div>
+	  </div>
+	</div>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;" id="btnCapture">
+				<span class="mui-media-object mui-pull-left mui-icon mui-icon-camera"></span>
+				<div class="mui-media-body">
+					拍照
+					<p class='mui-ellipsis'>能和心爱的人一起拍照，是件幸福的事情；可是，打呼噜怎么办？</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<!-- <img class="mui-media-object mui-pull-left" src="../images/muwu.jpg"> -->
+				
+				<div class="mui-media-body">
+					木屋
+					<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;">
+				<img class="mui-media-object mui-pull-left" src="../images/cbd.jpg">
+				<div class="mui-media-body">
+					CBD
+					<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined btnPosition">蓝色</button>
+	
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		//获得slider插件对象
+		var gallery = mui('.mui-slider');
+		gallery.slider({
+		interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+		});
+		
+		let slider = document.querySelector('.mui-slider-group');
+		let duplicate = slider.querySelectorAll('.mui-slider-item-duplicate');
+		
+		document.addEventListener( "plusready", ()=>{
+			let camera = plus.camera.getCamera();
+			let btnCapture = document.querySelector('#btnCapture');
+			btnCapture.onclick = ()=>{
+				// 获取支持的照片格式
+				let format = camera.supportedImageFormats[0];
+				console.log(format);
+				camera.captureImage(path=>{
+					console.log('path',path);
+					
+					//读取文件内容
+					plus.io.resolveLocalFileSystemURL(path,entry=>{
+						console.log(entry);
+						let realPath = entry.toLocalURL();console.log(realPath)
+						
+						// 写入页面
+						<!-- <div class="mui-slider-item"><a href="#"><img src="img/g4.jpg" /></a></div> -->
+						let div = document.createElement('div');
+						div.className = 'mui-slider-item';
+						let link = document.createElement('a');
+						link.href = '#';
+						
+						let img = document.createElement('img');
+						img.src = entry.fullPath;
+						
+						link.appendChild(img);
+						div.appendChild(link);
+						slider.insertBefore(div,duplicate[1]);
+						
+						//修改第一样图片的地址
+						duplicate[0].querySelector('img').src = entry.fullPath
+					})
+		
+				},
+				()=>{
+					
+				},
+				{}
+				);
+			}
+		}, false );
+		
+		
+		let btnPosition = document.querySelector('.btnPosition');
+		
+		btnPosition.onclick = function(){
+			console.log(123,navigator.geolocation);
+			var options={
+				enableHighAccuracy:true,
+				timeout:60000,
+				maximumAge:60000
+			}
+			navigator.geolocation.getCurrentPosition((position)=>{
+				var x=position.coords.longitude;
+				var y=position.coords.latitude;
+				alert("经度为:"+x+"纬度为:"+y);
+			},()=>{
+				console.log('fail')
+			},options)
+		}
+	</script>
+</body>
+</html>

@@ -8,6 +8,10 @@ const Brief = Item.Brief;
 
 class Cart extends Component{
 
+	componentWillMount(){
+		
+	}
+
 	render(){
 		return <div className="Cart">
 			<List>
