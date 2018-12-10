@@ -36,7 +36,7 @@ library.add(
 )
 
 // 设置axios的基础路径
-axios.defaults.baseURL = 'http://localhost:4004'
+axios.defaults.baseURL = 'http://39.104.104.171:4004'
 
 
 
