@@ -2,13 +2,29 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/login",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#58bc58",
+    "navigationBarBackgroundColor": "#f00",
     "navigationBarTitleText": "h5 1807",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true,
+    "backgroundColor":"#58bc58"
+  },
+  "tabBar":{
+    "color":"#fff",
+    "position":"top",
+    "backgroundColor":"#f00",
+    "list":[{
+      "pagePath":"pages/logs/logs",
+      "text":"logs"
+    },
+    {
+      "pagePath": "pages/index/index",
+      "text": "home"
+    }
+    ]
   }
 }
