@@ -3,6 +3,7 @@
 
 <!--index.wxml-->
 <view>
+  <!-- 轮播图 -->
   <swiper indicator-dots="{{true}}" autoplay="{{true}}">
     <navigator wx:for="{{recommend}}" wx:key="song_id" url="/pages/player/player?id={{item.song_id}}">
       <swiper-item>
@@ -10,12 +11,31 @@
       </swiper-item>
     </navigator>
   </swiper>
+
+  <!-- 搜索 -->
   <view class="weui-search-bar">
     <view class="weui-search-bar__form">
       <view class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" bindtap="gotoSearch"/>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{keyword}}" bindtap="gotoSearch" />
       </view>
     </view>
   </view>
+
+  <!-- tab切换 -->
+  <view class="weui-tab">
+    <view class="weui-navbar">
+      <block wx:for="{{tabs}}" wx:key="*this">
+        <view data-id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+          <view class="weui-navbar__title">{{item.text}}</view>
+        </view>
+      </block>
+      <view class="weui-navbar__slider" style="width: {{tabWidth}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+    </view>
+    <view class="weui-tab__panel">
+      <view wx:for="{{tabs}}" wx:key="type" class="weui-tab__content" hidden="{{activeIndex != index}}">
+      <template is="list" data="{{datalist:tabData[item.type],type:item.type}}" />
+    </view>
+  </view>
+</view>
 </view>

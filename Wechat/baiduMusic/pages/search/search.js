@@ -7,7 +7,7 @@ Page({
    */
   data: {
     inputShowed: true,
-    inputVal: "",
+    keyword: "",
     searchResult: []
   },
 
@@ -35,41 +35,49 @@ Page({
     if (timer) clearTimeout(timer);
 
     timer = setTimeout(() => {
-      wx.request({
-        url: 'https://tingapi.ting.baidu.com/v1/restserver/ting',
-        data: {
-          method: 'baidu.ting.search.catalogSug',
-          query: e.detail.value
-        },
-        success: res => {
-          let data = res.data; console.log(data)
-          let searchResult = data.song.map((item, idx) => {
-            let { artistname, songname, songid, weight } = item;
-            return {
-              pic: data.album[idx].artistpic,
-              artistname,
-              songname,
-              songid,
-              hot: weight
-            }
-          });
-          this.setData({
-            searchResult
-          })
-        }
-      });
+      this.getData(e.detail.value)
     }, 600)
 
 
+  },
+
+  getData(keyword){
+    wx.request({
+      url: 'https://tingapi.ting.baidu.com/v1/restserver/ting',
+      data: {
+        method: 'baidu.ting.search.catalogSug',
+        query: keyword
+      },
+      success: res => {
+        let data = res.data; console.log(data)
+        let searchResult = data.song.map((item, idx) => {
+          let { artistname, songname, songid, weight } = item;
+          return {
+            pic: data.album[idx].artistpic,
+            artistname,
+            songname,
+            songid,
+            hot: weight
+          }
+        });
+        this.setData({
+          searchResult
+        })
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     this.setData({
-      inputShowed:true
+      inputShowed:true,
+      keyword:options.keyword
     })
+
+    this.getData(options.keyword);
   },
 
   /**

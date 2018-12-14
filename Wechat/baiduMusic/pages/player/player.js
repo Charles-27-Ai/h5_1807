@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    data:{}
+    data:{},
+    latitude:'',
+    longitude:''
   },
 
   /**
@@ -19,7 +21,7 @@ Page({
       url: 'https://tingapi.ting.baidu.com/v1/restserver/ting',
       data: {
         method: 'baidu.ting.song.play',
-        songid: options.songid
+        songid: options.song_id
       },
       success: res => {
         let data = res.data;
@@ -31,6 +33,17 @@ Page({
         })
       }
     });
+
+
+    // 自动获取当前位置
+    wx.getLocation({
+      success:(res)=>{
+        this.setData({
+          longitude: res.longitude,
+          latitude: res.latitude
+        })
+      }
+    })
   },
 
   /**
