@@ -5,14 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    data:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // api:method=baidu.ting.song.play&songid=877578
 
+    // 热门歌曲
+    wx.request({
+      url: 'https://tingapi.ting.baidu.com/v1/restserver/ting',
+      data: {
+        method: 'baidu.ting.song.play',
+        songid: options.songid
+      },
+      success: res => {
+        let data = res.data;
+
+        console.log(data)
+
+        this.setData({
+          data
+        })
+      }
+    });
   },
 
   /**

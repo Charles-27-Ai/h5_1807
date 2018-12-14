@@ -1,2 +1,18 @@
-<!--pages/player/player.wxml-->
-<text>pages/player/player.wxml</text>
+<view>
+<image src="{{data.songinfo.pic_big}}"></image>
+<audio
+  poster="{{data.songinfo.pic_small}}"
+  name="{{data.songinfo.title}}"
+  author="{{data.songinfo.author}}"
+  src="{{data.bitrate.file_link}}"
+  id="myAudio"
+  controls
+  loop
+></audio>
+<camera
+  device-position="back"
+  flash="off"
+  binderror="error"
+  style="width: 100%; height: 300px;"
+></camera>
+</view>
