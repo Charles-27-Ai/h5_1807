@@ -1055,288 +1055,214 @@ body .markdown-body
 .codehilite .vi{color:teal}
 .codehilite .il{color:#009999}
 .codehilite .gc{color:#999;background-color:#EAF2F5}
-</style><title>webpack</title></head><body><article class="markdown-body"><h1 id="webpack">Webpack<a class="headerlink" href="#webpack" title="Permanent link"></a></h1>
-<div class="toc">
+</style><title>面试题整理（重点难点）</title></head><body><article class="markdown-body"><h1 id="_1">面试题整理（重点难点）<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+<h3 id="_2">原理<a class="headerlink" href="#_2" title="Permanent link"></a></h3>
 <ul>
-<li><a href="#webpack">Webpack</a><ul>
-<li><a href="#webpack_1">了解Webpack</a><ul>
-<li><a href="#webpack_2">什么是webpack</a></li>
-<li><a href="#webpack_3">为什要使用webpack</a></li>
-<li><a href="#webpackgulp">webpack与gulp的区别</a></li>
-</ul>
-</li>
-<li><a href="#webpack_4">使用webpack</a><ul>
-<li><a href="#_1">安装</a></li>
-<li><a href="#_2">配置文件</a></li>
-<li><a href="#_3">运行</a></li>
-</ul>
-</li>
-<li><a href="#loader">Loader（加载器）</a><ul>
-<li><a href="#babel-loader">babel-loader</a></li>
-<li><a href="#css-loader">css-loader</a></li>
-<li><a href="#vue-loader">vue-loader</a></li>
-<li><a href="#url-loader">url-loader</a></li>
-</ul>
-</li>
-<li><a href="#plugins">Plugins（插件）</a><ul>
-<li><a href="#htmlwebpackplugin">HtmlWebpackPlugin</a></li>
-<li><a href="#clean-webpack-plugin">clean-webpack-plugin</a></li>
-<li><a href="#extract-text-webpack-plugin">extract-text-webpack-plugin</a></li>
-<li><a href="#copy-webpack-plugin">copy-webpack-plugin</a></li>
-<li><a href="#webpack_5">webpack自带插件</a><ul>
-<li><a href="#hot-module-replacement">Hot Module Replacement</a></li>
-<li><a href="#webpackoptimizecommonschunkplugin">webpack.optimize.CommonsChunkPlugin</a></li>
-<li><a href="#webpackprovideplugin">webpack.ProvidePlugin</a></li>
+<li>如何理解单向数据绑定和双向数据绑定，什么又是单向数据流和双向数据流<ul>
+<li>单向绑定<ul>
+<li>data &ndash;&gt; view</li>
+<li>优点<ul>
+<li>所有状态的改变可记录、可跟踪，源头易追溯</li>
+<li>程序结构清晰容易理解，增加可维护性</li>
 </ul>
 </li>
 </ul>
 </li>
+<li>双向绑定<ul>
+<li>data &lt;&ndash;&gt; view</li>
+<li>单向绑定+UI事件监听</li>
+<li>优点<ul>
+<li>在表单交互较多的场景下，会简化大量业务无关的代码</li>
 </ul>
 </li>
 </ul>
-</div>
-<h2 id="webpack_1">了解Webpack<a class="headerlink" href="#webpack_1" title="Permanent link"></a></h2>
-<h3 id="webpack_2">什么是webpack<a class="headerlink" href="#webpack_2" title="Permanent link"></a></h3>
-<p>WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。</p>
-<h3 id="webpack_3">为什要使用webpack<a class="headerlink" href="#webpack_3" title="Permanent link"></a></h3>
+</li>
+<li>单向数据流：父&ndash;&gt;子<ul>
+<li>redux,vuex</li>
+</ul>
+</li>
+<li>双向数据流：父&lt;&ndash;&gt;子<ul>
+<li>angularjs(angular1) -&gt; angular2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>路由的原理<ul>
+<li>hash<ul>
+<li>格式：<code>http://www.xxx.com/#/category/comput</code></li>
+<li>原理：hashchange事件</li>
+</ul>
+</li>
+<li>history<ul>
+<li>格式：<code>http://www.xxx.com/category/computer</code></li>
+<li>需要服务器的支持：进入任意路由都是渲染index.html页面</li>
+<li>vue:（model:&rsquo;history&rsquo;）</li>
+<li>原理：pushState()/replaceState()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="_3">请求拦截<a class="headerlink" href="#_3" title="Permanent link"></a></h3>
+<blockquote>
+<p>在请求发起之前和请求成功后进行某些操作</p>
+</blockquote>
 <ul>
-<li>模块化开发：让我们可以把复杂的程序细化为小的文件;</li>
-<li>ES6转ES5：让我们能够使用JavaScript的新特性，并且能转换成浏览器可以识别的版本</li>
-<li>预处理：Scss，less等CSS预处理器</li>
-<li>预编译：vue单文件组件编译</li>
+<li>向服务器统一发送某些数据</li>
+<li>统一loadding效果</li>
 <li>&hellip;</li>
 </ul>
-<h3 id="webpackgulp">webpack与gulp的区别<a class="headerlink" href="#webpackgulp" title="Permanent link"></a></h3>
-<ul>
-<li>
-<p>gulp工作流程</p>
-<blockquote>
-<p>Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务
-<img alt="Alt text" src="///F://mydoc/kphone/h5/Section3/Outline3/week3_Webpack/doc/img/gulp.webp" title="Optional title" /></p>
-</blockquote>
-</li>
-<li>
-<p>webpack工作流程</p>
-<blockquote>
-<p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。
-<img alt="Alt text" src="///F://mydoc/kphone/h5/Section3/Outline3/week3_Webpack/doc/img/webpack.webp" title="Optional title" /></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="webpack_4">使用webpack<a class="headerlink" href="#webpack_4" title="Permanent link"></a></h2>
-<h3 id="_1">安装<a class="headerlink" href="#_1" title="Permanent link"></a></h3>
-<div class="codehilite"><pre>    //全局安装
-    npm install -g webpack
-    //安装到你的项目目录
-    npm install --save-dev webpack
+<div class="codehilite"><pre>    <span class="c1">// http request 拦截器</span>
+    <span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+        <span class="nx">config</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 判断是否存在token，如果存在的话，则每个http header都加上token</span>
+                <span class="nx">config</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">Authorization</span> <span class="o">=</span> <span class="err">`</span><span class="nx">token</span> <span class="nx">$</span><span class="p">{</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">token</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">//此处添加loading效果</span>
+            <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">//此处关闭loading效果</span>
+            <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">});</span>
+
+    <span class="c1">// http response 拦截器</span>
+    <span class="nx">axios</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+        <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">//此处关闭loading效果</span>
+            <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">case</span> <span class="mi">401</span><span class="o">:</span>
+                        <span class="c1">// 返回 401 清除token信息并跳转到登录页面</span>
+                        <span class="nx">store</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="nx">types</span><span class="p">.</span><span class="nx">LOGOUT</span><span class="p">);</span>
+                        <span class="nx">router</span><span class="p">.</span><span class="nx">replace</span><span class="p">({</span>
+                            <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/login&#39;</span>
+                        <span class="p">})</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">//此处关闭loading效果</span>
+
+            <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>   <span class="c1">// 返回接口返回的错误信息</span>
+        <span class="p">});</span>
 </pre></div>
 
-<h3 id="_2">配置文件<a class="headerlink" href="#_2" title="Permanent link"></a></h3>
-<blockquote>
-<p>在根目录创建webpack.config.js文件，并写入如下配置信息</p>
-</blockquote>
-<ul>
-<li>entry: 入口文件</li>
-<li>output: 输出设置</li>
-<li>
-<p>devServer：测试服务器</p>
-<blockquote>
-<p>配合webpack-dev-server插件使用，webpack development server 是一个webpack可选的本地开发的server。它通过nodejs的express 来起一个server提供静态文件服务，同时它根据配置信息（webpack.config.js）来打包资源，<strong>存在内存中</strong>，同时当你的代码发生改变的时候，它还可以刷新你的浏览器。它是一个单独的npm module，通过npm install webpack-dev-server &ndash;save-dev来给项目安装依赖。</p>
-</blockquote>
-</li>
-<li>
-<p>contentBase： 服务器路径（默认：项目的根目录）</p>
-</li>
-<li>port: 指定端口（默认：8080）</li>
-<li>inline: 是否自动刷新（默认：true）。</li>
-<li>historyApiFallback: 对于单页面程序，浏览器的histroy可以设置成html5 history api或者hash</li>
-<li>mode：模式<ul>
-<li>production（默认）</li>
-<li>development</li>
-<li>none</li>
-</ul>
-</li>
-<li>modules</li>
-<li>rules: 配置Loader（加载器）规则（<a href="#Loader（加载器）">详情</a>）</li>
-<li>plugin:插件（<a href="#Plugins（插件）">详情</a>）</li>
-</ul>
-<div class="codehilite"><pre>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="c1">//__dirname是一个nodejs的global变量，指代当前执行文件所在的文件夹</span>
-      <span class="nx">entry</span><span class="o">:</span>  <span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">&quot;/app/main.js&quot;</span><span class="p">,</span><span class="c1">//唯一入口文件</span>
-      <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">path</span><span class="o">:</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">&quot;/public/js&quot;</span><span class="p">,</span><span class="c1">//打包后的文件存放的路径</span>
-        <span class="nx">filename</span><span class="o">:</span> <span class="s2">&quot;bundle.js&quot;</span><span class="c1">//打包后输出的文件名</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-</pre></div>
-
-<h3 id="_3">运行<a class="headerlink" href="#_3" title="Permanent link"></a></h3>
-<ul>
-<li>写好配置文件后，在终端里运行命令进行打包操作</li>
-<li>webpack：输出打包后的文件（需全局安装webpack）</li>
-<li>webpack-dev-server：不输出文件，运行静态服务器（默认8080端口，需全局安装webpack-dev-server）</li>
-<li>任务快捷命令<blockquote>
-<p>在package.json中设置快捷方式，命令行运行格式：npm run 快捷命令</p>
-</blockquote>
-</li>
-</ul>
-<div class="codehilite"><pre>  <span class="s2">&quot;scripts&quot;</span><span class="err">:</span> <span class="p">{</span>
-    <span class="nt">&quot;dev&quot;</span><span class="p">:</span><span class="s2">&quot;webpack-dev-server  --inline --progress&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="s2">&quot;npm run dev&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="s2">&quot;webpack --progess&quot;</span>
-  <span class="p">}</span>
-</pre></div>
-
-<h2 id="loader">Loader（加载器）<a class="headerlink" href="#loader" title="Permanent link"></a></h2>
-<blockquote>
-<p>Webpack有一个不可不说的优点，它把所有的文件都都当做模块处理，webpack通过loader来加载各种各样的资源（如css,sass,less,vue文件组件,图片等），不同的资源应用的不同的loader，loaders是通过单独的npm来安装的，然后在webpack.config.js中通过module.rules来配置。loader的配置包括</p>
-</blockquote>
-<ul>
-<li>module.rules(Array)<ul>
-<li>test：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）</li>
-<li>use(Object|Array)<ul>
-<li>loader(String)：loader的名称，多个loader用数组实现</li>
-<li>options(Object):配置loader参数</li>
-</ul>
-</li>
-<li>loader(String|Array)<blockquote>
-<p>PS：loader为use.loader的简写，可以支持多个loader(处理顺序从后往前)</p>
-</blockquote>
-</li>
-<li>include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；</li>
-<li>query：为loaders提供额外的设置选项（可选）</li>
-</ul>
-</li>
-</ul>
-<h3 id="babel-loader">babel-loader<a class="headerlink" href="#babel-loader" title="Permanent link"></a></h3>
-<blockquote>
-<p>Babel其实是一个编译JavaScript的平台，它可以编译代码帮你达到以下目的：</p>
-</blockquote>
-<ul>
-<li>balel能做什么</li>
-<li>ES6、ES7&hellip;转ES5</li>
-<li>让你能使用基于JavaScript进行了拓展的语言，比如React的JSX；</li>
-<li>babel-loader依赖模块</li>
-<li>babel-core: 核心功能</li>
-<li>babel-preset-env：解析ES6语法</li>
-<li>babel-preset-react: 解析JSX</li>
-</ul>
-<h3 id="css-loader">css-loader<a class="headerlink" href="#css-loader" title="Permanent link"></a></h3>
-<blockquote>
-<p>作用是让webpack可以解析执行css文件</p>
-</blockquote>
-<ul>
-<li>style-loader：作用是生成一个style标签，并且将解析后的css文件插入到style中去<blockquote>
-<p>css-loader使你能够使用类似<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/import" title="GitHub User: import">@import</a> 和 url(&hellip;)的方法实现 require()的功能, style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中</p>
-</blockquote>
-</li>
-<li>sass-loader：编译sass文件</li>
-</ul>
-<h3 id="vue-loader">vue-loader<a class="headerlink" href="#vue-loader" title="Permanent link"></a></h3>
-<blockquote>
-<p>编译vue代码</p>
-</blockquote>
-<ul>
-<li>vue-template-compiler：解析vue单文件模板</li>
-</ul>
-<h3 id="url-loader">url-loader<a class="headerlink" href="#url-loader" title="Permanent link"></a></h3>
-<blockquote>
-<p>一个对图片等文件进行优化的加载器，可以解决图片引用路径的问题，并可以根据limit设置把小图片一dataURI的方式保存，减少http请求
-* limit: 文件大小
-    - 小于等于limit，则以dataURI方式显示
-    - 大于limit，则调用file-loader处理
-* name：文件名规则
-    - 默认值：文件哈希。
-    - <code>[path]</code>表示输出文件的相对路径与当前文件相对路径相同，打包后文件中引用文件的路径也会加上这个相对路径
-    - <code>[name].[ext]</code>则表示输出文件的名字和扩展名与当前相同</p>
-</blockquote>
-<ul>
-<li>file-loader：解决图片引用路径的问题（img和background）<blockquote>
-<p>url-loader内置file-loader的功能</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="plugins">Plugins（插件）<a class="headerlink" href="#plugins" title="Permanent link"></a></h2>
-<blockquote>
-<p>loader 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务，可以处理loader处理不了的事情。插件的范围包括：打包优化、资源管理和注入环境变量。</p>
-</blockquote>
-<h3 id="htmlwebpackplugin">HtmlWebpackPlugin<a class="headerlink" href="#htmlwebpackplugin" title="Permanent link"></a></h3>
-<p>这个插件的作用是依据一个html文件作为模板模板，在出口目录自动生成一个引用你打包后的JS的新文件（生成多个页面要多次调用new HtmlWebpackPlugin()）</p>
-<ul>
-<li>template:模板路径</li>
-<li>filename:输出文件名（默认：index.html）</li>
-<li>title:设置html文件的title属性</li>
-<li>hash:是否自动往引入的css或js中添加hash（默认：false）</li>
-</ul>
-<div class="codehilite"><pre>  <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span>
-    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
-      <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;./src/index.html&#39;</span>
-    <span class="p">})</span>
-  <span class="p">]</span>
-</pre></div>
-
-<h3 id="clean-webpack-plugin">clean-webpack-plugin<a class="headerlink" href="#clean-webpack-plugin" title="Permanent link"></a></h3>
-<p>添加了hash之后，会导致改变文件内容后重新打包时，文件名不同而内容越来越多，因此这里介绍另外一个很好用的插件clean-webpack-plugin
-<div class="codehilite"><pre>    <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span>
-        <span class="k">new</span> <span class="nx">CleanWebpackPlugin</span><span class="p">(</span><span class="s1">&#39;dist&#39;</span><span class="p">)</span><span class="c1">//参数：String/Array</span>
-    <span class="p">]</span>
-</pre></div></p>
-<h3 id="extract-text-webpack-plugin">extract-text-webpack-plugin<a class="headerlink" href="#extract-text-webpack-plugin" title="Permanent link"></a></h3>
-<p>用于提取css文件的公共部分，从一个已存在的 loader 中，创建一个提取(extract) loader
-* 参数（String|Object）
-    - filename</p>
-<div class="codehilite"><pre>    <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span>
-        <span class="k">new</span> <span class="nx">ExtractTextWebpackPlugin</span><span class="p">(</span><span class="s1">&#39;common.css&#39;</span><span class="p">)</span><span class="c1">//参数：String/Object</span>
-    <span class="p">],</span>
-    <span class="nx">rules</span><span class="o">:</span><span class="p">[</span>
-        <span class="p">{</span> 
-            <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span> 
-            <span class="nx">use</span><span class="o">:</span> <span class="nx">ExtractTextWebpackPlugin</span><span class="p">.</span><span class="nx">extract</span><span class="p">({</span>
-                <span class="nx">use</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
-                <span class="nx">fallback</span><span class="o">:</span><span class="s1">&#39;style-loader&#39;</span>
-            <span class="p">})</span> 
+<h3 id="_4">路由拦截（访问权限控制）<a class="headerlink" href="#_4" title="Permanent link"></a></h3>
+<div class="codehilite"><pre>    <span class="c1">//页面权限控制</span>
+    <span class="nx">router</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">((</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">requireAuth</span><span class="p">){</span>
+            <span class="c1">// 判断是否登录</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">)){</span>
+            <span class="c1">// if(store.state.token){</span>
+                <span class="nx">next</span><span class="p">();</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="nx">next</span><span class="p">({</span>
+                    <span class="nx">path</span><span class="o">:</span><span class="s1">&#39;/login&#39;</span>
+                <span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="nx">next</span><span class="p">();</span>
         <span class="p">}</span>
-    <span class="p">]</span>
+    <span class="p">});</span>
 </pre></div>
 
-<blockquote>
-<p>PS：由于本插件还未支持webpack4，可能会报错，安装时请使用npm install -D extract-text-webpack-plugin@next（<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/4" title="GitHub User: 4">@4</a>.0.0-beta.0）</p>
-</blockquote>
-<h3 id="copy-webpack-plugin">copy-webpack-plugin<a class="headerlink" href="#copy-webpack-plugin" title="Permanent link"></a></h3>
-<p>在webpack中拷贝文件和文件夹，一般用于把资源文件（图片等）拷贝到编译目录</p>
+<h3 id="token">token<a class="headerlink" href="#token" title="Permanent link"></a></h3>
+<p>Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码</p>
 <ul>
-<li>from    定义要拷贝的源目录</li>
-<li>to      定义要拷贝到的目标目录（基于output目录）</li>
+<li>目的：Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮</li>
+<li>如何使用:<ul>
+<li>客户端使用用户名和密码登录</li>
+<li>服务端生成token（生成规则不定），保存到数据库并设置到session中，然后返回给前端</li>
+<li>客户端接收到token，并保存到本地</li>
+<li>客户端以后的每次请求都在请求头中要携带token</li>
+<li>服务端对每一次请求进行token验证（前端传来的token与session中的token进行对比），相同则放行，不同则拒绝</li>
 </ul>
-<h3 id="webpack_5">webpack自带插件<a class="headerlink" href="#webpack_5" title="Permanent link"></a></h3>
-<h4 id="hot-module-replacement">Hot Module Replacement<a class="headerlink" href="#hot-module-replacement" title="Permanent link"></a></h4>
-<p>是webpack自带很有用的一个插件，它允许你在修改组件代码后，自动刷新实时预览修改后的效果</p>
-<ul>
-<li>在webpack配置文件中添加HMR插件；
-<div class="codehilite"><pre>  <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span>
-      <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">HotModuleReplacementPlugin</span><span class="p">()</span>
-  <span class="p">]</span>
-</pre></div><blockquote>
-<p>PS: webpack-dev-server内部自动调用HotModuleReplacementPlugin，使用webpack-dev-server时不需要额外配置HMR</p>
-</blockquote>
 </li>
 </ul>
-<h4 id="webpackoptimizecommonschunkplugin">webpack.optimize.CommonsChunkPlugin<a class="headerlink" href="#webpackoptimizecommonschunkplugin" title="Permanent link"></a></h4>
-<p>它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用（webpack4已被移除）。
-<div class="codehilite"><pre>    <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span>
-        <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">CommonsChunkPlugin</span><span class="p">({</span>
-          <span class="nx">names</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;vendor&#39;</span><span class="p">]</span>
-        <span class="p">})</span>
-    <span class="p">]</span>
-</pre></div></p>
-<h4 id="webpackprovideplugin">webpack.ProvidePlugin<a class="headerlink" href="#webpackprovideplugin" title="Permanent link"></a></h4>
-<p>import引入模块后，无论你在代码中是否使用该模块，打包时都会打包进去，这样就会产生大量的冗余js，ProvidePlugin只有你在使用到此库的时候，才会打包进去
-<div class="codehilite"><pre>    <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span>
-        <span class="c1">//利用ProvidePlugin提供jquery模块，可以在任意代码中直接使用$,jQuery</span>
-        <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">ProvidePlugin</span><span class="p">({</span>
-            <span class="nx">$</span><span class="o">:</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span>
-            <span class="nx">jQuery</span><span class="o">:</span> <span class="s1">&#39;jquery&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;window.jQuery&#39;</span><span class="o">:</span><span class="s1">&#39;jquery&#39;</span>
-        <span class="p">})</span>
-    <span class="p">]</span>
-</pre></div></p></article></body></html>
+<h3 id="session">session<a class="headerlink" href="#session" title="Permanent link"></a></h3>
+<ul>
+<li>定义：session是一次浏览器和服务器的交互的会话</li>
+<li>为什么会有session：<ul>
+<li>http请求是无状态的，什么是无状态呢？就是说这一次请求和上一次请求是没有任何关系的，互不认识的，没有关联的（优点：快速，缺点：无法识别用户是否已登录）
+<div class="codehilite"><pre>    <span class="c1">//php设置/获取session</span>
+    <span class="nx">$_SESSION</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;laoxie&#39;</span><span class="p">;</span>
+    <span class="nx">$_SESSION</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">];</span>
+    <span class="c1">//nodejs中设置/获取session（配合express-session模块）</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;laoxie&#39;</span><span class="p">;</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">seesion</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+</pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="asyncawait">async&amp;await<a class="headerlink" href="#asyncawait" title="Permanent link"></a></h3>
+<p>ES7新增</p>
+<h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link"></a></h3>
+<h3 id="http3">对http缓存的理解，搞懂以下3个问题：<a class="headerlink" href="#http3" title="Permanent link"></a></h3>
+<ol>
+<li>为什么被缓存</li>
+<li>缓存类型</li>
+<li>浏览器是如何使用缓存</li>
+</ol>
+<h4 id="_5">为什么被缓存：<a class="headerlink" href="#_5" title="Permanent link"></a></h4>
+<p>为提高页面响应速度和减少资源占用，浏览器会对静态资源（图片、css文件、js文件等）进行缓存（存入客户端硬盘）</p>
+<h4 id="_6">缓存类型：<a class="headerlink" href="#_6" title="Permanent link"></a></h4>
+<ol>
+<li>强缓存（200 from cache）<ul>
+<li>http请求资源，直接从客户端缓存中获取，不发送请求到服务器，不与服务器发生交互行为</li>
+</ul>
+</li>
+<li>协商缓存（304）<ul>
+<li>http请求资源，发送到服务器后，由服务器判定是否从缓存中获取资源</li>
+</ul>
+</li>
+</ol>
+<h4 id="_7">浏览器是如何使用缓存的：(注意：从第二次请求开始才会有缓存机制)<a class="headerlink" href="#_7" title="Permanent link"></a></h4>
+<ol>
+<li>浏览器判定是否有缓存（查找文件是否存在）</li>
+<li>缓存是否过期（根据第一次请求response header中的expires 、Cache-Control字段判断是否过期）<ul>
+<li>如果判定为未过期，则《强制缓存》（直接使用客户端文件，状态码为：200 from cache）</li>
+<li>如果判定为已经过期，则进入第3步</li>
+</ul>
+</li>
+<li>跟服务器协商是否使用缓存<ul>
+<li>向服务器发起请求（request header中附带If-Modified-Since和If-None-Match字段）</li>
+<li>服务器根据If-Modified-Since和If-None-Match字段判断是否使用缓存<ul>
+<li>是：《协商缓存》（状态码为：304）</li>
+<li>否：重新向服务器请求新的资源文件和缓存规则（expires 、Cache-Control字段）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="_8">回调函数<a class="headerlink" href="#_8" title="Permanent link"></a></h3>
+<h3 id="_9">函数节流<a class="headerlink" href="#_9" title="Permanent link"></a></h3>
+<blockquote>
+<p>指一定时间内js方法只跑一次，用于优化高频率执行js代码</p>
+</blockquote>
+<ul>
+<li>应用场景：滚动加载更多</li>
+<li>为什么要做函数节流：对于高频率执行的代码，如果跑得越多，带来的效果是一样的。 倒不如把js代码的执行次数控制在合理的范围。既能节省浏览器CPU资源，又能让页面浏览更加顺畅，不会因为js的执行而发生卡顿</li>
+</ul>
+<h3 id="_10">函数防抖<a class="headerlink" href="#_10" title="Permanent link"></a></h3>
+<p>频繁触发的情况下，只有足够的空闲时间，才执行代码一次</p>
+<ul>
+<li>应用场景：百度搜索建议</li>
+</ul>
+<h3 id="_11">事件循环<a class="headerlink" href="#_11" title="Permanent link"></a></h3>
+<ul>
+<li>了解进程（Process）：一个进程一次只能执行一个任务</li>
+<li>了解线程（Worker）：因为进程太耗费资源，所以如今的程序往往允许一个进程包含多个线程，由线程去完成任务</li>
+<li>多任务解决方案<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="_12">闭包<a class="headerlink" href="#_12" title="Permanent link"></a></h3>
+<h3 id="_13">设计模式<a class="headerlink" href="#_13" title="Permanent link"></a></h3>
+<h3 id="_14">如何写出高质量代码<a class="headerlink" href="#_14" title="Permanent link"></a></h3>
+<ul>
+<li>代码风格</li>
+</ul></article></body></html>
